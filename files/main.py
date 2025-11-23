@@ -35,25 +35,25 @@ while True:
 
     #setting adjustment
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_UP]:
-        setting.resolution += 1
-    if keys[pygame.K_DOWN]:
-        setting.resolution -= 1
-        if setting.resolution < 1: setting.resolution = 1
+    # if keys[pygame.K_UP]:
+    #     setting.resolution += 1
+    # if keys[pygame.K_DOWN]:
+    #     setting.resolution -= 1
+    #     if setting.resolution < 1: setting.resolution = 1
     
-    if keys[pygame.K_RIGHT]:
-        setting.FOV += 1 * (math.pi / 180)
-        if setting.FOV > 179 * (math.pi / 180): setting.FOV = 179 * (math.pi / 180)
-    if keys[pygame.K_LEFT]:
-        setting.FOV -= 1 * (math.pi / 180)
-        if setting.FOV < 1 * (math.pi / 180): setting.FOV = 1 * (math.pi / 180)
+    # if keys[pygame.K_RIGHT]:
+    #     setting.FOV += 1 * (math.pi / 180)
+    #     if setting.FOV > 179 * (math.pi / 180): setting.FOV = 179 * (math.pi / 180)
+    # if keys[pygame.K_LEFT]:
+    #     setting.FOV -= 1 * (math.pi / 180)
+    #     if setting.FOV < 1 * (math.pi / 180): setting.FOV = 1 * (math.pi / 180)
         
     if keys[pygame.K_LSHIFT]:
         rayPlayer.moveSpeed = 4
     else: rayPlayer.moveSpeed = 2
     
-    setting.rayNumber = (setting.screenX // setting.resolution)
-    pygame.display.set_caption(f"Raycaster - setting.resolution: {setting.resolution} - Rays: {setting.rayNumber} - setting.FOV: {round(setting.FOV * (180 / math.pi), 2)}")
+    # setting.rayNumber = (setting.screenX // setting.resolution)
+    pygame.display.set_caption(f"Raycaster - resolution: {setting.resolution} - Rays: {setting.rayNumber} - FOV: {round(setting.FOV * (180 / math.pi), 2)} - Move Speed : {rayPlayer.moveSpeed}")
     
     
             

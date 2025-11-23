@@ -1,19 +1,20 @@
 import pygame
 import setting
 
-pygame.init()
-
-def loadTexture(path, rayNumber):
-    return pygame.transform.scale(pygame.image.load(path).convert(), (rayNumber, rayNumber))
-
-def stripTexture(texture: pygame.Surface, rayNumber):
-    textureStrip = []
-    for x in range(texture.get_width()):
-        strip = pygame.Surface((1, rayNumber))
-        strip.blit(texture,(0,0), (x, 0, 1, rayNumber))
-        textureStrip.append(strip)
-    return textureStrip
+class textureLoader:
+    def __init__(self, path):
+        self.texture = pygame.transform.scale(pygame.image.load(path).convert(), (setting.rayNumber, setting.rayNumber))
+        self.stripTextures = []
+        self.width, self.height = self.texture.get_width(), self.texture.get_height()
     
+    def strip(self, floorMultiplier = 1):
+        self.floorMultiplier = floorMultiplier
+        for x in range(self.width):
+            strip = pygame.Surface((1, setting.rayNumber * self.floorMultiplier))
+            for i in range(self.floorMultiplier):
+                strip.blit(self.texture,(0,setting.rayNumber * i), (x, 0, 1, setting.rayNumber))
+            self.stripTextures.append(strip)
+        
 
-texture1 = loadTexture("files/textures/grass.png", setting.rayNumber)
-texture1Strip = stripTexture(texture1, setting.rayNumber)
+wall = textureLoader("files/textures/grass.png")
+wall.strip(3)
